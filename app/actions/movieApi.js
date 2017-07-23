@@ -39,7 +39,7 @@ export const sendPersonSearch = (searchText) => {
   return apiCall(url,recievedPersonSearch)
 }
 
-export getMovieCredits = (user_id) => {
+export const getMovieCredits = (user_id) => {
   let url = `/person/${person_id}/movie_credits`
   url = baseApiUrl(url)
   url = addParamsToUrl(url)
