@@ -2,7 +2,7 @@ const API_BASE = "https://api.themoviedb.org/3"
 const API_KEY = "d658c3789fbf9e3c3d24ecf6e5cde56a"
 
 export const RECIEVED_PERSON_SEARCH_RESULTS = "RECIEVED_PERSON_SEARCH_RESULTS"
-export const RECIEVED_MOVIE_CREDITS_RESULTS = "RECIEVED_MOVIE_CREDITS_RESULTS"
+export const RECIEVED_PERSON_CREDITS_RESULTS = "RECIEVED_PERSON_CREDITS_RESULTS"
 
 const baseApiUrl = (path) => {
   return `${API_BASE}${path}`
@@ -15,9 +15,9 @@ const recievedPersonSearch = (response) => {
   }
 }
 
-const recievedMovieCredits = (response) => {
+const recievedPersonCredits = (response) => {
   return{
-    type: RECIEVED_MOVIE_CREDITS_RESULTS,
+    type: RECIEVED_PERSON_CREDITS_RESULTS,
     response
   }
 }
@@ -39,11 +39,11 @@ export const sendPersonSearch = (searchText) => {
   return apiCall(url,recievedPersonSearch)
 }
 
-export const getMovieCredits = (user_id) => {
+export const getPersonCredits = (user_id) => {
   let url = `/person/${person_id}/movie_credits`
   url = baseApiUrl(url)
   url = addParamsToUrl(url)
-  return apiCall(url, recievedMovieCredits)
+  return apiCall(url, recievedPersonCredits)
 }
 
 export const apiCall = (url, onRecieved) => {

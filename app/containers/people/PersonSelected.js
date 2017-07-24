@@ -1,9 +1,7 @@
 import React, {PropTypes} from 'react'
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import { personSearchChange } from '../../actions/personSearch'
-import { sendPersonSearch } from '../../actions/movieApi'
+import { getPersonCredits } from '../../actions/movieApi'
 import { addPersonToMatch } from '../../actions/addPerson'
 
 class PersonSelected extends React.Component {
@@ -50,6 +48,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addPerson: function(){
       dispatch(addPersonToMatch(this))
+      dispatch(getPersonCredits(this.id))
     }
   }
 }

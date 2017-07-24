@@ -9,7 +9,6 @@ import UserCard from './UserCard'
 class SearchResults extends React.Component {
 
   results(){
-    console.log(this.props.results)
     return this.props.results.map((obj) => {
       return <UserCard data={obj} key={`person-search-${obj.id}`} />
     })
