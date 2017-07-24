@@ -6,8 +6,9 @@ const initState ={
 
 function addPerson(state, action) {
   let people = state.people.slice()
-  let found = people.find((added) => { return added.id == action.person.id })
-  if(!found) people.push(action.person)
+  // let found = people.find((added) => { return added.id == action.person.id })
+  // if(!found) people.push(action.person)
+  people.push(action.person)
   return {people}
 }
 

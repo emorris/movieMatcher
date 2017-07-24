@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { personSearchChange } from '../../actions/personSearch'
-import { sendPersonSearch } from '../../actions/movieApi'
+import { getPersonCredits } from '../../actions/movieApi'
 import { addPersonToMatch } from '../../actions/addPerson'
 class UserCard extends React.Component {
   getImgPath(file){
@@ -48,6 +48,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     addPerson: function(){
+      dispatch(getPersonCredits(this.id))
       dispatch(addPersonToMatch(this))
     }
   }

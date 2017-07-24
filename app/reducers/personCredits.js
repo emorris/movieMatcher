@@ -4,11 +4,17 @@ const initState ={
   movieCrewCredits: {}
 }
 
+function convertToObject(array){
+  return array.reduce(function(result, obj) {
+    result[obj.id] = obj
+    return result
+  }, {})
+}
+
 function addMovieCredits(state, action){
-  let results = action.results
-  debugger
-  let movieCastCredits = Object.assign({}, state.movieCastCredits, {[result.id]: new Map(result['cast'].map((obj) => [obj.id, obj]))})
-  let movieCrewCredits = Object.assign({}, state.movieCastCredits, {[result.id]: new Map(result['crew'].map((obj) => [obj.id, obj]))})
+  let result = action.response
+  let movieCastCredits = Object.assign({}, state.movieCastCredits, {[result.id]: convertToObject(result['cast'])})
+  let movieCrewCredits = Object.assign({}, state.movieCastCredits, {[result.id]: convertToObject(result['crew'])})
   return {movieCastCredits, movieCrewCredits}
 }
 

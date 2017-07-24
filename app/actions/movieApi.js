@@ -39,7 +39,7 @@ export const sendPersonSearch = (searchText) => {
   return apiCall(url,recievedPersonSearch)
 }
 
-export const getPersonCredits = (user_id) => {
+export const getPersonCredits = (person_id) => {
   let url = `/person/${person_id}/movie_credits`
   url = baseApiUrl(url)
   url = addParamsToUrl(url)
@@ -63,11 +63,11 @@ export const apiCall = (url, onRecieved) => {
 }
 
 const checkStatus = (response) => {
-    if (response.status >= 200 && response.status < 300) {
-      return response.json();
-    } else {
-      let error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }
+  if (response.status >= 200 && response.status < 300) {
+    return response.json();
+  } else {
+    let error = new Error(response.statusText);
+    error.response = response;
+    throw error;
   }
+}

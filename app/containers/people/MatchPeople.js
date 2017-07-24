@@ -6,12 +6,11 @@ import PersonSelected from './PersonSelected'
 
 class MatchPeople extends React.Component {
   peopleToMatch(){
-    console.log(this.props.people)
     return this.props.people.map((obj) => {
       return(
         <PersonSelected 
           data={obj} 
-          key={`person-to-check-${obj.id}`} />
+          key={`person-to-check-${obj.id}${Math.random()}`} />
       )
     })
   }
@@ -20,12 +19,16 @@ class MatchPeople extends React.Component {
     if(this.props.people.length > 0){
       return(
         <View style={[styles.main]}>
-          {this.peopleToMatch()}
-          <Button
-            onPress={this.props.checkMovies.bind(this.props)}
-            title="Check Movie Matches"
-            color="#841584"
-            accessibilityLabel="Check Movie Matches" />
+          <View style={{flex:5, flexDirection: 'row'}}>
+            {this.peopleToMatch()}
+          </View>
+          <View style={{flex:1}}>
+            <Button
+              onPress={this.props.checkMovies.bind(this.props)}
+              title="Check Movie Matches"
+              color="#841584"
+              accessibilityLabel="Check Movie Matches" />
+          </View>
         </View>
       )
     }
@@ -36,12 +39,12 @@ class MatchPeople extends React.Component {
 
 var styles = StyleSheet.create({
   main: {
-    flex: 2
+    flex: 2,
+    flexDirection: 'column'
   },
 });
 
 function mapStateToProps(state) {
-  console.log(state.addPeopleActions)
   return {
     people: state.addPeopleActions.people
   };

@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import SearchBox from "../containers/people/SearchBox"
 import SearchResults from "../containers/people/SearchResults"
 import MatchPeople from "../containers/people/MatchPeople"
+import MatchResults from "../containers/people/MatchResults"
 
 class Home extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class Home extends React.Component {
         <SearchBox />
         <SearchResults />
         <MatchPeople />
+        <MatchResults />
       </View>
     );
   }

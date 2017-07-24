@@ -6,7 +6,6 @@ const initState ={
 }
 
 export function personSearchActions(state = initState, action){
-  console.log(action)
   switch(action.type){
     case PERSON_SEARCH_CHANGE:
       return Object.assign({}, state, {searchTxt: action.searchTxt})
