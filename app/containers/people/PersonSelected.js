@@ -1,22 +1,25 @@
 import React, {PropTypes} from 'react'
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
-
+import {getImgMovieApiPath} from '../../helpers'
+import { removePersonFromMatching } from "../../actions/matchPerson"
 class PersonSelected extends React.Component {
-  getImgPath(file){
-    return {uri:`https://image.tmdb.org/t/p/w500${file}`}
-  }
 
   render() {
     let obj = this.props.data
     return (
-      <TouchableOpacity style={[styles.main]} onPress={this.props.clickOnPerson.bind(obj)}>
-        <Image
-          style={{flex: 1}}
-          source={this.getImgPath(obj.profile_path)}
-        />
-        <Text>{obj.name}</Text>
-      </TouchableOpacity>
+      <View style={[styles.main]} >
+        <TouchableOpacity onPress={this.props.clickOnPerson.bind(obj)}>
+          <Image
+            style={[styles.main]}
+            source={getImgMovieApiPath(obj.profile_path)}
+          />
+          <Text>{obj.name}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.props.removePerson.bind(obj)}>
+          <Text style={styles.removeBtn}>Remove</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -32,6 +35,18 @@ var styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
   },
+  image: {
+    height:100,
+    flex: 1,
+  },
+  removeBtn:{
+    borderColor: "black",
+    borderWidth: 1,
+    padding:10,
+    borderRadius: 5,
+    color: "red",
+    textAlign: "center"
+  }
 });
 
 
@@ -42,7 +57,12 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    removePerson: function(){
+      dispatch(removePersonFromMatching(this))
+      console.log("Remove This user", this)
+    },
     clickOnPerson: function(){
+      console.log("ToDo Load Bio")
     }
   }
 }

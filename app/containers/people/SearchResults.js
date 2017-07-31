@@ -7,44 +7,38 @@ import { sendPersonSearch } from '../../actions/movieApi'
 import UserCard from './UserCard'
 
 class SearchResults extends React.Component {
-
   results(){
     return this.props.results.map((obj) => {
       return <UserCard data={obj} key={`person-search-${obj.id}`} />
     })
   }
 
-  showResults(){
+  render() {
     if(this.props.results.length > 0){
       return(
-        <View style={{flex:1, flexDirection: 'column'}}>
-          <Text>Search Results:</Text>
-          {this.results()}
+        <View style={[styles.main]}>
+          <Text>Search Results for {this.props.searchTxt}</Text>
+          <ScrollView>
+            {this.results()}
+          </ScrollView>
         </View>
       )
     }
     return null
-  }
-
-  render() {
-    return (
-      <ScrollView style={[styles.main]}>
-        {this.showResults()}
-      </ScrollView>
-    );
   }
 }
 
 
 var styles = StyleSheet.create({
   main: {
-    flex:1
+    flex:1,
   },
 });
 
 function mapStateToProps(state) {
   return {
-    results: state.personSearchActions.results
+    results: state.personSearchActions.results,
+    searchTxt: state.personSearchActions.searchTxtResults
   };
 }
 

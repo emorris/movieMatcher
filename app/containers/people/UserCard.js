@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { personSearchChange } from '../../actions/personSearch'
 import { getPersonCredits } from '../../actions/movieApi'
-import { addPersonToMatch } from '../../actions/addPerson'
+import { addPersonToMatching } from '../../actions/matchPerson'
 class UserCard extends React.Component {
   getImgPath(file){
     return {uri:`https://image.tmdb.org/t/p/w500${file}`}
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addPerson: function(){
       dispatch(getPersonCredits(this.id))
-      dispatch(addPersonToMatch(this))
+      dispatch(addPersonToMatching(this))
     }
   }
 }

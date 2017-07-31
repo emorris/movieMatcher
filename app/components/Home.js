@@ -22,8 +22,7 @@ class Home extends React.Component {
 var styles = StyleSheet.create({
   home: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 10,
     backgroundColor: 'transparent'
   }
 });

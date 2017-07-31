@@ -8,10 +8,11 @@ const baseApiUrl = (path) => {
   return `${API_BASE}${path}`
 }
 
-const recievedPersonSearch = (response) => {
+const recievedPersonSearch = (response, data) => {
   return{
     type: RECIEVED_PERSON_SEARCH_RESULTS,
-    response
+    response,
+    searchTxt: data.query
   }
 }
 
@@ -36,7 +37,7 @@ export const sendPersonSearch = (searchText) => {
   let params = {query: searchText}
   let url = baseApiUrl("/search/person")
   url = addParamsToUrl(url, params)
-  return apiCall(url,recievedPersonSearch)
+  return apiCall(url,recievedPersonSearch, params)
 }
 
 export const getPersonCredits = (person_id) => {
@@ -46,7 +47,7 @@ export const getPersonCredits = (person_id) => {
   return apiCall(url, recievedPersonCredits)
 }
 
-export const apiCall = (url, onRecieved) => {
+export const apiCall = (url, onRecieved, dataToPass={}) => {
   return dispatch => {
     return fetch(url, {
       method: "GET",
@@ -54,7 +55,7 @@ export const apiCall = (url, onRecieved) => {
     .then(checkStatus)
     .then(function(json) {
       console.log(json)
-      dispatch(onRecieved(json))
+      dispatch(onRecieved(json, dataToPass))
     })
     .catch(function(error) {
       console.log(error)

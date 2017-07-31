@@ -3,23 +3,13 @@ import {StyleSheet, Text, View, Button, Image, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import PersonSelected from './PersonSelected'
-import {getImgMovieApiPath} from '../../helpers'
+import MovieCard from '../../components/Movies/MovieCard'
 
 class MatchResults extends React.Component {
   showResults(){
     let items = this.props.results.map((film) => {
-      return(
-        <View style={{flex: 1, padding: 10, borderWidth: 1}}>
-          <Image
-            style={{width:100, height:100}}
-            source={getImgMovieApiPath(film.poster_path)}
-          />
-          <Text>{film.title}</Text>
-          <Text>{film.overview}</Text>
-        </View>
-      )
+      return(<MovieCard key={`film-${film.id}`} data={film} />)
     })
-    console.log(items)
     return items
   }
 
