@@ -55,9 +55,12 @@ function searchForMatches(toMatch, movieCredits){
 function processMatch(state){
   let movieCredits = state.personCreditsActions.movieCastCredits
   let toMatch = state.addPeopleActions.people.slice()
-  if(!checkIfMatchIsReady(toMatch, movieCredits)) {
+  let startMatching = state.personCreditsActions.startMatching
+  console.log(startMatching)
+  if(!startMatching || !checkIfMatchIsReady(toMatch, movieCredits)) {
     return []
   } else {
+      console.log("searchForMatches")
     return searchForMatches(toMatch, movieCredits);
   }
 }

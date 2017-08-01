@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
 import {getImgMovieApiPath} from '../../helpers'
 
 export default class MovieCard extends React.Component {

@@ -44,6 +44,8 @@ var styles = StyleSheet.create({
   },
 });
 
+import {startMatchingPeople} from "../../actions/matchPerson"
+
 function mapStateToProps(state) {
   return {
     people: state.addPeopleActions.people
@@ -53,7 +55,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     checkMovies: function(){
-      console.log("checkMovies")
+      dispatch(startMatchingPeople())
     }
   }
 }

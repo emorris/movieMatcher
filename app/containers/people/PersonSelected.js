@@ -59,10 +59,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     removePerson: function(){
       dispatch(removePersonFromMatching(this))
-      console.log("Remove This user", this)
     },
     clickOnPerson: function(){
-      console.log("ToDo Load Bio")
+      console.log("To Do Load Bio")
     }
   }
 }
