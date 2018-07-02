@@ -53,14 +53,12 @@ function searchForMatches(toMatch, movieCredits){
 }
 
 function processMatch(state){
-  let movieCredits = state.personCreditsActions.movieCastCredits
-  let toMatch = state.addPeopleActions.people.slice()
-  let startMatching = state.personCreditsActions.startMatching
-  console.log(startMatching)
+  let movieCredits = state.personCredits.movieCastCredits
+  let toMatch = state.addPeople.people.slice()
+  let startMatching = state.personCredits.startMatching
   if(!startMatching || !checkIfMatchIsReady(toMatch, movieCredits)) {
     return []
   } else {
-      console.log("searchForMatches")
     return searchForMatches(toMatch, movieCredits);
   }
 }
@@ -76,7 +74,6 @@ var styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log("ping", state, processMatch(state))
   return {
     results: processMatch(state)
   };

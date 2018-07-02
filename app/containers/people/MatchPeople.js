@@ -8,8 +8,8 @@ class MatchPeople extends React.Component {
   peopleToMatch(){
     return this.props.people.map((obj) => {
       return(
-        <PersonSelected 
-          data={obj} 
+        <PersonSelected
+          data={obj}
           key={`person-to-check-${obj.id}${Math.random()}`} />
       )
     })
@@ -48,7 +48,7 @@ import {startMatchingPeople} from "../../actions/matchPerson"
 
 function mapStateToProps(state) {
   return {
-    people: state.addPeopleActions.people
+    people: state.addPeople.people
   };
 }
 

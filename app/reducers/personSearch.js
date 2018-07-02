@@ -6,15 +6,15 @@ const initState ={
   results: []
 }
 
-export function personSearchActions(state = initState, action){
+export function personSearch(state = initState, action){
   switch(action.type){
     case PERSON_SEARCH_CHANGE:
       return Object.assign({}, state, {searchTxt: action.searchTxt})
     case RECIEVED_PERSON_SEARCH_RESULTS:
-      console.log(action)
-      return Object.assign({}, state, 
+      return Object.assign({}, state,
         {
-          results: action.response.results, 
+          searchTxt: initState.searchTxt,
+          results: action.response.results,
           searchTxtResults: action.searchTxt
         }
       )

@@ -5,7 +5,7 @@ const initState ={
 }
 function matchUser(person){
   console.log(this.person.id, person.id)
-  return 
+  return
 }
 
 function removePerson(state, action){
@@ -21,7 +21,7 @@ function addPerson(state, action) {
   return {people}
 }
 
-export function addPeopleActions(state = initState, action) {
+export function addPeople(state = initState, action) {
   switch(action.type){
     case ADD_PERSON_TO_MATCHING:
       return Object.assign({}, state, addPerson(state, action))

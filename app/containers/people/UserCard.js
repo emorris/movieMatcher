@@ -10,6 +10,16 @@ class UserCard extends React.Component {
     return {uri:`https://image.tmdb.org/t/p/w500${file}`}
   }
 
+  selectedView(){
+    if(this.props.selected){
+      return(
+        <View>
+          <Text>SELECTED</Text>
+        </View>
+      )
+    }
+  }
+
   render() {
     let obj = this.props.data
     return (
@@ -20,6 +30,7 @@ class UserCard extends React.Component {
             source={this.getImgPath(obj.profile_path)}
           />
           <Text>{obj.name}</Text>
+          {this.selectedView()}
         </View>
       </TouchableOpacity>
     );

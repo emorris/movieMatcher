@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import {personSearchActions} from './personSearch'
-import {addPeopleActions} from './addPeople'
-import {personCreditsActions} from './personCredits'
+import {personSearch} from './personSearch'
+import {addPeople} from './addPeople'
+import {personCredits} from './personCredits'
 
 const reducers = combineReducers({
-  personSearchActions,
-  addPeopleActions,
-  personCreditsActions
+  personSearch,
+  addPeople,
+  personCredits
 })
 
 export default reducers

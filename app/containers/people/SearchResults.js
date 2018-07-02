@@ -7,9 +7,25 @@ import { sendPersonSearch } from '../../actions/movieApi'
 import UserCard from './UserCard'
 
 class SearchResults extends React.Component {
+  isSelected(obj){
+    let found = this.props.selected_people.find(
+      function(selected){
+        return selected.id == obj.id
+      }
+    )
+    return found !== undefined
+  }
+
   results(){
+    console.log(this.props.selected_people)
     return this.props.results.map((obj) => {
-      return <UserCard data={obj} key={`person-search-${obj.id}`} />
+      return(
+        <UserCard
+          data={obj}
+          key={`person-search-${obj.id}`}
+          selected={ this.isSelected(obj) }
+        />
+      )
     })
   }
 
@@ -37,8 +53,9 @@ var styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    results: state.personSearchActions.results,
-    searchTxt: state.personSearchActions.searchTxtResults
+    results: state.personSearch.results,
+    searchTxt: state.personSearch.searchTxtResults,
+    selected_people: state.addPeople.people
   };
 }
 

@@ -20,7 +20,7 @@ function addMovieCredits(state, action){
   return {movieCastCredits, movieCrewCredits}
 }
 
-export function personCreditsActions(state = initState, action){
+export function personCredits(state = initState, action){
   switch(action.type){
     case RECIEVED_PERSON_CREDITS_RESULTS:
       return Object.assign({}, state, addMovieCredits(state, action))

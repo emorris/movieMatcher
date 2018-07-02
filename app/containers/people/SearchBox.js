@@ -10,17 +10,21 @@ class SearchBox extends React.Component {
     return (
       <View style={[styles.main]}>
         <TextInput
-          style={{flex:1, height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={[styles.searchInput]}
           onChangeText={this.props.onSearchTxtChange}
-          value={this.props.searchTxt} 
+          value={this.props.searchTxt}
           autoCorrect={false}
+          placeholder={"Who are you looking for?"}
           autoCapitalize={"none"}
           />
-        <Button
-          onPress={this.props.searchForPerson.bind(this.props)}
-          title="Search"
-          color="#841584"
-          accessibilityLabel="Search for a Person" />
+        <View
+          style={[styles.buttonStyle]}>
+          <Button
+            onPress={this.props.searchForPerson.bind(this.props)}
+            title="Search"
+            color="white"
+            accessibilityLabel="Search for a Person" />
+        </View>
       </View>
     );
   }
@@ -34,11 +38,26 @@ var styles = StyleSheet.create({
     paddingVertical: 10,
     flexDirection: 'row'
   },
+  searchInput:{
+    flex:1,
+    height: 40,
+    borderColor: 'gray',
+    margin: 1,
+    borderWidth: 1
+  },
+  buttonStyle:{
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: 15,
+    textAlign: 'center',
+    fontSize: 16,
+    padding: 4
+  }
 });
 
 function mapStateToProps(state) {
   return {
-    searchTxt: state.personSearchActions.searchTxt
+    searchTxt: state.personSearch.searchTxt
   };
 }
 

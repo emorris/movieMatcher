@@ -9,16 +9,24 @@ class PersonSelected extends React.Component {
     let obj = this.props.data
     return (
       <View style={[styles.main]} >
-        <TouchableOpacity onPress={this.props.clickOnPerson.bind(obj)}>
-          <Image
-            style={[styles.main]}
-            source={getImgMovieApiPath(obj.profile_path)}
-          />
-          <Text>{obj.name}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.props.removePerson.bind(obj)}>
-          <Text style={styles.removeBtn}>Remove</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity onPress={this.props.clickOnPerson.bind(obj)}>
+            <View  style={{width: 50, height: 50}}>
+              <Image
+                style={[styles.main]}
+                source={getImgMovieApiPath(obj.profile_path)}
+              />
+            </View>
+            <Text>{obj.name}</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={this.props.removePerson.bind(obj)}>
+            <View>
+              <Text style={styles.removeBtn}>x</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -28,21 +36,22 @@ class PersonSelected extends React.Component {
 var styles = StyleSheet.create({
   main: {
     flex:1,
+    height:100,
     borderColor: "black",
     borderWidth: 1,
     marginBottom: 5,
     padding: 5,
     margin: 5,
     borderRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   image: {
-    height:100,
-    flex: 1,
   },
   removeBtn:{
     borderColor: "black",
     borderWidth: 1,
-    padding:10,
+    padding:2,
     borderRadius: 5,
     color: "red",
     textAlign: "center"
