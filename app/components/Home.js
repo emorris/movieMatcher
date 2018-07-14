@@ -10,9 +10,10 @@ class Home extends React.Component {
   render() {
     return (
       <View style={[styles.home]}>
+        <MatchPeople />
         <SearchBox />
         <SearchResults />
-        <MatchPeople />
+
         <MatchResults />
       </View>
     );

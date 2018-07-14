@@ -11,18 +11,18 @@ class PersonSelected extends React.Component {
       <View style={[styles.main]} >
         <View>
           <TouchableOpacity onPress={this.props.clickOnPerson.bind(obj)}>
-            <View  style={{width: 50, height: 50}}>
+            <View >
               <Image
-                style={[styles.main]}
+                style={[styles.image]}
                 source={getImgMovieApiPath(obj.profile_path)}
               />
             </View>
-            <Text>{obj.name}</Text>
+            <Text style={[styles.name]}>{obj.name}</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={this.props.removePerson.bind(obj)}>
-            <View>
+            <View style={[styles.removeBtnBlock]}>
               <Text style={styles.removeBtn}>x</Text>
             </View>
           </TouchableOpacity>
@@ -35,8 +35,6 @@ class PersonSelected extends React.Component {
 
 var styles = StyleSheet.create({
   main: {
-    flex:1,
-    height:100,
     borderColor: "black",
     borderWidth: 1,
     marginBottom: 5,
@@ -47,14 +45,20 @@ var styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   image: {
+    width: 85,
+    height: 100
+  },
+  removeBtnBlock:{
+    position: 'absolute',
+    right: 0,
+    top: 0
   },
   removeBtn:{
-    borderColor: "black",
-    borderWidth: 1,
-    padding:2,
-    borderRadius: 5,
+    fontSize: 20,
     color: "red",
-    textAlign: "center"
+  },
+  name:{
+    marginTop: 5,
   }
 });
 

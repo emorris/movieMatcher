@@ -54,7 +54,6 @@ export const apiCall = (url, onRecieved, dataToPass={}) => {
     })
     .then(checkStatus)
     .then(function(json) {
-      console.log(json)
       dispatch(onRecieved(json, dataToPass))
     })
     .catch(function(error) {

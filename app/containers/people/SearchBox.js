@@ -67,7 +67,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(personSearchChange(txt))
     },
     searchForPerson: function(){
-      console.log("searchForPerson")
       dispatch(sendPersonSearch(this.searchTxt))
     }
   }

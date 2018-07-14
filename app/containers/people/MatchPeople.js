@@ -19,10 +19,10 @@ class MatchPeople extends React.Component {
     if(this.props.people.length > 0){
       return(
         <View style={[styles.main]}>
-          <View style={{flex:5, flexDirection: 'row'}}>
+          <View style={[styles.matchBlock]}>
             {this.peopleToMatch()}
           </View>
-          <View style={{flex:1}}>
+          <View style={[styles.matchButtonBlock]}>
             <Button
               onPress={this.props.checkMovies.bind(this.props)}
               title="Check Movie Matches"
@@ -39,16 +39,21 @@ class MatchPeople extends React.Component {
 
 var styles = StyleSheet.create({
   main: {
-    flex: 2,
     flexDirection: 'column'
   },
+  matchBlock:{
+    flexDirection: 'row'
+  },
+  matchButtonBlock: {
+
+  }
 });
 
 import {startMatchingPeople} from "../../actions/matchPerson"
 
 function mapStateToProps(state) {
   return {
-    people: state.addPeople.people
+    people: state.personCredits.matchUser
   };
 }
 

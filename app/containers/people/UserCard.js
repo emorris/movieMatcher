@@ -14,7 +14,7 @@ class UserCard extends React.Component {
     if(this.props.selected){
       return(
         <View>
-          <Text>SELECTED</Text>
+          <Text> / SELECTED</Text>
         </View>
       )
     }

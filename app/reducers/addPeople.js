@@ -3,6 +3,7 @@ import { ADD_PERSON_TO_MATCHING, REMOVE_PERSON_FROM_MATCHING } from '../actions/
 const initState ={
   people: [],
 }
+
 function matchUser(person){
   console.log(this.person.id, person.id)
   return

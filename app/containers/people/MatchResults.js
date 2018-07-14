@@ -1,11 +1,15 @@
 import React, {PropTypes} from 'react'
-import {StyleSheet, Text, View, Button, Image, ScrollView} from 'react-native';
+import {
+  StyleSheet,Text, View, Button,
+  Image, ScrollView, Modal, TouchableHighlight
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import PersonSelected from './PersonSelected'
 import MovieCard from '../../components/Movies/MovieCard'
 
 class MatchResults extends React.Component {
+
   showResults(){
     let items = this.props.results.map((film) => {
       return(<MovieCard key={`film-${film.id}`} data={film} />)
@@ -13,59 +17,43 @@ class MatchResults extends React.Component {
     return items
   }
 
+  hideModalBtn(){
+    return (
+      <TouchableHighlight
+       onPress={() => {
+         this.props.setVisiblityOfModal(this.props.showModal);
+       }}>
+       <Text>Hide</Text>
+     </TouchableHighlight>
+    )
+
+  }
+
   render() {
     if(this.props.results.length > 0){
       return(
-        <View style={[styles.main]}>
-          <Text>Match Results</Text>
-          <ScrollView style={[styles.main]}>
-            {this.showResults()}
-          </ScrollView>
-        </View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.props.showModal}
+          >
+          <View style={[styles.main]}>
+            {this.hideModalBtn()}
+            <Text>Match Results</Text>
+            <ScrollView style={[styles.main]}>
+              {this.showResults()}
+            </ScrollView>
+          </View>
+        </Modal>
       )
     }
     return null
   }
 }
 
-function checkIfMatchIsReady(toMatch, movieCredits){
-  if(toMatch.length  < 2 || Object.keys(movieCredits).length == 0) return false
-  let allGood = true
-  toMatch.forEach(function(person) {
-    allGood = allGood && !!movieCredits[person.id]
-  });
-  return allGood
-}
-
-function searchForMatches(toMatch, movieCredits){
-  let matches = movieCredits[toMatch.pop().id]
-  toMatch.forEach((user) => {
-    let newMatches = {}
-    let personFilms = movieCredits[user.id]
-    Object.keys(matches).map((key, index)=>{
-      if(!!personFilms[key]){
-        newMatches[key] = matches[key]
-      }
-    })
-    matches = newMatches
-  })
-  return Object.values(matches);
-}
-
-function processMatch(state){
-  let movieCredits = state.personCredits.movieCastCredits
-  let toMatch = state.addPeople.people.slice()
-  let startMatching = state.personCredits.startMatching
-  if(!startMatching || !checkIfMatchIsReady(toMatch, movieCredits)) {
-    return []
-  } else {
-    return searchForMatches(toMatch, movieCredits);
-  }
-}
-
 var styles = StyleSheet.create({
   main: {
-    flex: 5
+    marginTop: 22
   },
   scrollView: {
     flex: 1,
@@ -73,14 +61,20 @@ var styles = StyleSheet.create({
   }
 });
 
+import { setVisibleMovieMatch } from "../../actions/index"
+
 function mapStateToProps(state) {
   return {
-    results: processMatch(state)
+    results: state.personCredits.matched,
+    showModal: state.modalState.matchModalVisible
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setVisiblityOfModal(val){
+      dispatch(setVisibleMovieMatch(val))
+    }
   }
 }
 
